@@ -19,10 +19,10 @@ function draw() {
     while (y<winh){
       while (x<winw){
         fill(random(255),196,203);
-        square(x, y, 30);
-        x = x + 30;
+        square(x, y, 5);
+        x = x + 5;
       }
-      y=y+30;
+      y=y+5;
       x=0;
     }
     y=0;
