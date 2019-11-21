@@ -13,7 +13,6 @@ class Card {
         this.valorSHIPS_DER = valorSHIPS_DER;
         this.valorMINERALS_DER = valorMINERALS_DER;
 
-        this.display=function(){
-        }
+        
     }
 }
