@@ -4,6 +4,7 @@ class Card {
         this.texto = texto;
         this.textoIZ=textoIZ;
         this.textoDER=textoDER;
+        
         this.valorOVNI_IZ = valorOVNI_IZ;
         this.valorCREW_IZ = valorCREW_IZ;
         this.valorSHIPS_IZ = valorSHIPS_IZ;
