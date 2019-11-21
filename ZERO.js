@@ -119,7 +119,8 @@ imageMode(CENTER);
 //image(deck[indicedeck].imgn, windowWidth/2,windowHeight/2,windowHeight/3,windowHeight/3);
 
 //text(textoIZ, windowWidth/2-100,windowHeight/2+160);
-    botonIZ.position(windowWidth/2-100-75,windowHeight/2+250);
+    //botonIZ.position(windowWidth/2-100-75,windowHeight/2+250);
+    botonIZ.position(windowWidth/2-100-75,windowHeight-windowHeight/7);
     botonIZ.mousePressed(accion_IZ);
     botonIZ.size(150);
     botonIZ.style('background-color', "#f44336");
@@ -132,7 +133,7 @@ imageMode(CENTER);
 botonIZ.mouseOver(hoverIZ).mouseOut(oHIZ);
 
 
-    botonDER.position(windowWidth/2+100-75,windowHeight/2+250);
+    botonDER.position(windowWidth/2+100-75,windowHeight-windowHeight/7);
     botonDER.mousePressed(accion_DER);
     botonDER.size(150);
     botonDER.style('background-color', "#4CAF50");
@@ -156,16 +157,16 @@ botonDER.mouseOver(hoverDER).mouseOut(oHDER);
       ellipse(windowWidth/2-150, windowHeight/2-300+13, 50, 50); // Draw gray ellipse using CENTER mode
     }
 fill("#98C379");
-    text(ovni.toString(), (windowWidth/2)-150, (windowHeight/2)-300);
-
-    text(crew.toString(), (windowWidth/2)-50, (windowHeight/2)-300);
-    text(ships.toString(), (windowWidth/2)+50, (windowHeight/2)-300);
-    text(minerals.toString(), (windowWidth/2)+150, (windowHeight/2)-300);
+    text(ovni.toString(), (windowWidth/2)-150, windowHeight-windowHeight/1.2);
+text(crew.toString(), (windowWidth/2)-50, windowHeight-windowHeight/1.2);
+    //text(crew.toString(), (windowWidth/2)-50, (windowHeight/2)-300);
+    text(ships.toString(), (windowWidth/2)+50, windowHeight-windowHeight/1.2);
+    text(minerals.toString(), (windowWidth/2)+150, windowHeight-windowHeight/1.2);
 
     textSize(25);
     fill("#E06C60");
-    text(deck[indicedeck].texto,(windowWidth/2), (windowHeight/2)-225);
-
+    //text(deck[indicedeck].texto,(windowWidth/2), (windowHeight/2)-225);
+text(deck[indicedeck].texto,(windowWidth/2),windowHeight-windowHeight/1.3);
 
 rectMode(CORNER);
 rect(windowWidth/2-180, windowHeight/2-375,7,50);
@@ -174,13 +175,13 @@ rect(windowWidth/2-180, windowHeight/2-375,7,50);
 
 
 
-        image(ovniIcon, windowWidth/2-150, windowHeight/2-350,50,50);
+        image(ovniIcon, windowWidth/2-150, windowHeight-windowHeight/1.12,50,50);
 
-        image(crewIcon, windowWidth/2-50, windowHeight/2-350,50,50);
+        //image(crewIcon, windowWidth/2-50, windowHeight/2-350,50,50);
+image(crewIcon, windowWidth/2-50, windowHeight-windowHeight/1.12,50,50);
+        image(shipsIcon, windowWidth/2+50, windowHeight-windowHeight/1.12,50,50);
 
-        image(shipsIcon, windowWidth/2+50, windowHeight/2-350,50,50);
-
-        image(mineralsIcon, windowWidth/2+150, windowHeight/2-350,50,50);
+        image(mineralsIcon, windowWidth/2+150, windowHeight-windowHeight/1.12,50,50);
 
 
       function hoverIZ() {
