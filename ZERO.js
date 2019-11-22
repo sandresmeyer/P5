@@ -7,6 +7,7 @@ var currentCard=0;
 var indicedeck=0;
 var dirc=0;
 let imagenCarta;
+
 var deck=[
   new Card("imgs/001.jpg","hola soy oprah","No lo creo","si sip",25,0,0,-25,-25,0,0,25),
   new Card("imgs/002.jpg","hola soy retrasada","Mentira","Porisita",1,1,1,1,-1,-1,-1,-1),
@@ -25,18 +26,18 @@ function preload() {
   crewIcon=loadImage("imgs/crewIcon.png");
   shipsIcon=loadImage("imgs/shipsIcon.png");
   mineralsIcon=loadImage("imgs/mineralsIcon.png");
-deckImages=[
-  loadImage(deck[0].imgn),
-  loadImage(deck[1].imgn),
-  loadImage(deck[2].imgn),
-  loadImage(deck[3].imgn),
-  loadImage(deck[4].imgn),
-  loadImage(deck[5].imgn),
-  loadImage(deck[6].imgn),
-  loadImage(deck[7].imgn),
-  loadImage(deck[8].imgn),
-  loadImage(deck[9].imgn)
-]
+  deckImages=[
+    loadImage(deck[0].imgn),
+    loadImage(deck[1].imgn),
+    loadImage(deck[2].imgn),
+    loadImage(deck[3].imgn),
+    loadImage(deck[4].imgn),
+    loadImage(deck[5].imgn),
+    loadImage(deck[6].imgn),
+    loadImage(deck[7].imgn),
+    loadImage(deck[8].imgn),
+    loadImage(deck[9].imgn)
+  ]
   //img = loadImage('assets/laDefense.jpg');
 }
 function setup(){
@@ -47,6 +48,8 @@ function setup(){
 }
 
 function draw(){
+  cardX=windowWidth/2;
+  cardY=windowHeight/2;
   loadUI();
   noLoop();
 
@@ -58,7 +61,9 @@ function nextCard(){
     botonDER.remove();
     loadGO();
   }else{
-loadUI();
+    cardX=windowWidth/2;
+    cardY=windowHeight/2;
+    loadUI();
 
   }
 
@@ -66,21 +71,21 @@ loadUI();
 
 function accion_IZ(){
 
-    ovni=ovni+deck[indicedeck].valorOVNI_IZ;
-    crew=crew+deck[indicedeck].valorCREW_IZ;
-    ships=ships+deck[indicedeck].valorSHIPS_IZ;
-    minerals=minerals+deck[indicedeck].valorMINERALS_IZ;
-    ++indicedeck;
-    //debugger;
+  ovni=ovni+deck[indicedeck].valorOVNI_IZ;
+  crew=crew+deck[indicedeck].valorCREW_IZ;
+  ships=ships+deck[indicedeck].valorSHIPS_IZ;
+  minerals=minerals+deck[indicedeck].valorMINERALS_IZ;
+  ++indicedeck;
+  //debugger;
 
-    nextCard();
-  }
+  nextCard();
+}
 
 function accion_DER(){
-    ovni=ovni+deck[indicedeck].valorOVNI_DER;
-    crew=crew+deck[indicedeck].valorCREW_DER;
-    ships=ships+deck[indicedeck].valorSHIPS_DER;
-    minerals=minerals+deck[indicedeck].valorMINERALS_DER;
+  ovni=ovni+deck[indicedeck].valorOVNI_DER;
+  crew=crew+deck[indicedeck].valorCREW_DER;
+  ships=ships+deck[indicedeck].valorSHIPS_DER;
+  minerals=minerals+deck[indicedeck].valorMINERALS_DER;
 
   ++indicedeck;
   //debugger;
@@ -96,6 +101,7 @@ function windowResized() {
 function loadUI(){
   var textoIZ;
   var textoDER;
+
   if (indicedeck>9){
     indicedeck=0;
   }
@@ -107,118 +113,148 @@ function loadUI(){
   fill("#21252B");
   rect(windowWidth/2,windowHeight/2,windowHeight/3,windowHeight/3);
 
-imageMode(CENTER);
+  imageMode(CENTER);
   //loadImage(deck[indicedeck].imgn, imagenCarta => {
-    // image(imagenCarta, windowWidth/2,windowHeight/2,windowHeight/3,windowHeight/3);
-    //});
+  // image(imagenCarta, windowWidth/2,windowHeight/2,windowHeight/3,windowHeight/3);
+  //});
 
 
 
-         image(deckImages[indicedeck], windowWidth/2,windowHeight/2,windowHeight/2.5,windowHeight/2.5);
+  image(deckImages[indicedeck], cardX,cardY,windowHeight/2.5,windowHeight/2.5);
 
-//image(deck[indicedeck].imgn, windowWidth/2,windowHeight/2,windowHeight/3,windowHeight/3);
+  //image(deck[indicedeck].imgn, windowWidth/2,windowHeight/2,windowHeight/3,windowHeight/3);
 
-//text(textoIZ, windowWidth/2-100,windowHeight/2+160);
-    //botonIZ.position(windowWidth/2-100-75,windowHeight/2+250);
-    botonIZ.position(windowWidth/2-100-75,windowHeight-windowHeight/7);
-    botonIZ.mousePressed(accion_IZ);
-    botonIZ.size(150);
-    botonIZ.style('background-color', "#f44336");
-    botonIZ.style('border-radius', "8px");
-    botonIZ.style('display', "inline-block");
-    botonIZ.style('padding', "14px 40px");
-    botonIZ.style('border', "none");
-    botonIZ.style('font-family', "saxMono");
-    botonIZ.style('font-size', "32px");
-botonIZ.mouseOver(hoverIZ).mouseOut(oHIZ);
-
-
-    botonDER.position(windowWidth/2+100-75,windowHeight-windowHeight/7);
-    botonDER.mousePressed(accion_DER);
-    botonDER.size(150);
-    botonDER.style('background-color', "#4CAF50");
-    botonDER.style('border-radius', "8px");
-    botonDER.style('display', "inline-block");
-    botonDER.style('padding', "14px 40px");
-    botonDER.style('border', "none");
-    botonDER.style('font-family', "saxMono");
-    botonDER.style('font-size', "32px");
-botonDER.mouseOver(hoverDER).mouseOut(oHDER);
+  //text(textoIZ, windowWidth/2-100,windowHeight/2+160);
+  //botonIZ.position(windowWidth/2-100-75,windowHeight/2+250);
+  botonIZ.position(windowWidth/2-100-75,windowHeight-windowHeight/7);
+  botonIZ.mousePressed(accion_IZ);
+  botonIZ.size(150);
+  botonIZ.style('background-color', "#f44336");
+  botonIZ.style('border-radius', "8px");
+  botonIZ.style('display', "inline-block");
+  botonIZ.style('padding', "14px 40px");
+  botonIZ.style('border', "none");
+  botonIZ.style('font-family', "saxMono");
+  botonIZ.style('font-size', "32px");
+  botonIZ.mouseOver(hoverIZ).mouseOut(oHIZ);
 
 
-    textSize(32);
-    fill("#98C379");
-    //stroke("#ABB2A0");
-    textFont('saxMono');
-
-    if (ovni<25){
-      ellipseMode(CENTER);
-      fill("#7B2C34"); // Set fill to gray
-      ellipse(windowWidth/2-150, windowHeight/2-300+13, 50, 50); // Draw gray ellipse using CENTER mode
-    }
-fill("#98C379");
-    text(ovni.toString(), (windowWidth/2)-150, windowHeight-windowHeight/1.2);
-text(crew.toString(), (windowWidth/2)-50, windowHeight-windowHeight/1.2);
-    //text(crew.toString(), (windowWidth/2)-50, (windowHeight/2)-300);
-    text(ships.toString(), (windowWidth/2)+50, windowHeight-windowHeight/1.2);
-    text(minerals.toString(), (windowWidth/2)+150, windowHeight-windowHeight/1.2);
-
-    textSize(25);
-    fill("#E06C60");
-    //text(deck[indicedeck].texto,(windowWidth/2), (windowHeight/2)-225);
-text(deck[indicedeck].texto,(windowWidth/2),windowHeight-windowHeight/1.3);
-
-rectMode(CORNER);
-rect(windowWidth/2-180, windowHeight/2-375,7,50);
+  botonDER.position(windowWidth/2+100-75,windowHeight-windowHeight/7);
+  botonDER.mousePressed(accion_DER);
+  botonDER.size(150);
+  botonDER.style('background-color', "#4CAF50");
+  botonDER.style('border-radius', "8px");
+  botonDER.style('display', "inline-block");
+  botonDER.style('padding', "14px 40px");
+  botonDER.style('border', "none");
+  botonDER.style('font-family', "saxMono");
+  botonDER.style('font-size', "32px");
+  botonDER.mouseOver(hoverDER).mouseOut(oHDER);
 
 
+  textSize(32);
+  fill("#98C379");
+  //stroke("#ABB2A0");
+  textFont('saxMono');
 
-
-
-        image(ovniIcon, windowWidth/2-150, windowHeight-windowHeight/1.12,50,50);
-
-        //image(crewIcon, windowWidth/2-50, windowHeight/2-350,50,50);
-image(crewIcon, windowWidth/2-50, windowHeight-windowHeight/1.12,50,50);
-        image(shipsIcon, windowWidth/2+50, windowHeight-windowHeight/1.12,50,50);
-
-        image(mineralsIcon, windowWidth/2+150, windowHeight-windowHeight/1.12,50,50);
-
-
-      function hoverIZ() {
-        loadUI();
-        textAlign(CENTER);
-        fill("#BC78DD");
-        textSize(20);
-        textoIZ=text(deck[indicedeck].textoIZ, windowWidth/2-100,windowHeight/2+200);
-        //text(deck[indicedeck].textoIZ, windowWidth/2-100,windowHeight/2+160);
-      }
-
-      function oHIZ() {
-        loadUI();
-        textAlign(CENTER);
-        fill("#BC78DD");
-        textSize(20);
-        textoIZ=text(" ", windowWidth/2-100,windowHeight/2+200);
-      }
-      function hoverDER() {
-        loadUI();
-        textAlign(CENTER);
-        fill("#BC78DD");
-        textSize(20);
-        textoDER=text(deck[indicedeck].textoDER, windowWidth/2+100,windowHeight/2+200);
-      }
-
-      function oHDER() {
-        loadUI();
-        textAlign(CENTER);
-        fill("#BC78DD");
-        textSize(20);
-        textoIZ=text(" ", windowWidth/2+100,windowHeight/2+200);
-      }
+  if (ovni<25){
+    ellipseMode(CENTER);
+    fill("#7B2C34"); // Set fill to gray
+    ellipse(windowWidth/2-150, windowHeight/2-300+13, 50, 50); // Draw gray ellipse using CENTER mode
   }
-  function loadGO(){
-    background("#282C34");
-    textSize(40);
-    textAlign(CENTER);
-    text("GUEIM OBER uwu", windowWidth/2,windowHeight/2);
+  fill("#98C379");
+  text(ovni.toString(), (windowWidth/2)-150, windowHeight-windowHeight/1.2);
+  text(crew.toString(), (windowWidth/2)-50, windowHeight-windowHeight/1.2);
+  //text(crew.toString(), (windowWidth/2)-50, (windowHeight/2)-300);
+  text(ships.toString(), (windowWidth/2)+50, windowHeight-windowHeight/1.2);
+  text(minerals.toString(), (windowWidth/2)+150, windowHeight-windowHeight/1.2);
+
+  textSize(25);
+  fill("#E06C60");
+  //text(deck[indicedeck].texto,(windowWidth/2), (windowHeight/2)-225);
+  text(deck[indicedeck].texto,(windowWidth/2),windowHeight-windowHeight/1.3);
+
+  rectMode(CORNER);
+  rect(windowWidth/2-180, windowHeight/2-375,7,50);
+
+
+
+
+
+  image(ovniIcon, windowWidth/2-150, windowHeight-windowHeight/1.12,50,50);
+
+  //image(crewIcon, windowWidth/2-50, windowHeight/2-350,50,50);
+  image(crewIcon, windowWidth/2-50, windowHeight-windowHeight/1.12,50,50);
+  image(shipsIcon, windowWidth/2+50, windowHeight-windowHeight/1.12,50,50);
+
+  image(mineralsIcon, windowWidth/2+150, windowHeight-windowHeight/1.12,50,50);
+
+
+
+}
+function hoverIZ() {
+  loadUI();
+  textAlign(CENTER);
+  fill("#BC78DD");
+  textSize(20);
+  textoIZ=text(deck[indicedeck].textoIZ, windowWidth/2-100,windowHeight/2+200);
+  //text(deck[indicedeck].textoIZ, windowWidth/2-100,windowHeight/2+160);
+}
+
+function oHIZ() {
+  loadUI();
+  textAlign(CENTER);
+  fill("#BC78DD");
+  textSize(20);
+  textoIZ=text(" ", windowWidth/2-100,windowHeight/2+200);
+}
+function hoverDER() {
+  loadUI();
+  textAlign(CENTER);
+  fill("#BC78DD");
+  textSize(20);
+  textoDER=text(deck[indicedeck].textoDER, windowWidth/2+100,windowHeight/2+200);
+}
+
+function oHDER() {
+  loadUI();
+  textAlign(CENTER);
+  fill("#BC78DD");
+  textSize(20);
+  textoIZ=text(" ", windowWidth/2+100,windowHeight/2+200);
+}
+
+function loadGO(){
+  background("#282C34");
+  textSize(40);
+  textAlign(CENTER);
+  text("GUEIM OBER uwu", windowWidth/2,windowHeight/2);
+}
+function mouseDragged() {
+  cardX=mouseX;
+  cardY=mouseY;
+  if(mouseX>windowWidth/2){
+    hoverDER();
+    //loadUI();
+    console.log("der");
+  }else if (mouseX<windowWidth/2){
+    hoverIZ();
+    console.log("iz");
+    //loadUI();
   }
+
+}
+function mouseReleased(){
+  if(mouseX>windowWidth/2+windowWidth/4){
+    accion_DER()
+
+  }else if(mouseX<windowWidth/2-windowWidth/4){
+    accion_IZ()
+
+  }else {
+    cardX=windowWidth/2;
+    cardY=windowHeight/2;
+    loadUI();
+  }
+
+}
