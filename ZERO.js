@@ -50,6 +50,7 @@ function setup(){
 function draw(){
   cardX=windowWidth/2;
   cardY=windowHeight/2;
+presionado=0;
   loadUI();
   noLoop();
 
@@ -99,6 +100,7 @@ function windowResized() {
 }
 
 function loadUI(){
+presionado=0;
   var textoIZ;
   var textoDER;
 
@@ -140,7 +142,7 @@ function loadUI(){
 
 
   botonDER.position(windowWidth/2+100-75,windowHeight-windowHeight/7);
-  botonDER.mousePressed(accion_DER);
+  botonDER.mousePressed(loadPC);
   botonDER.size(150);
   botonDER.style('background-color', "#4CAF50");
   botonDER.style('border-radius', "8px");
@@ -233,22 +235,23 @@ function loadGO(){
 function mouseDragged() {
   cardX=mouseX;
   cardY=mouseY;
+  presionado=1;
   if(mouseX>windowWidth/2){
     hoverDER();
     //loadUI();
-    console.log("der");
+
   }else if (mouseX<windowWidth/2){
     hoverIZ();
-    console.log("iz");
+
     //loadUI();
   }
 
 }
 function mouseReleased(){
-  if(mouseX>windowWidth/2+windowWidth/4){
+  if(presionado=1 && mouseX>windowWidth/2+windowWidth/4){
     accion_DER()
 
-  }else if(mouseX<windowWidth/2-windowWidth/4){
+  }else if(presionado=1 && mouseX<windowWidth/2-windowWidth/4){
     accion_IZ()
 
   }else {
@@ -257,4 +260,8 @@ function mouseReleased(){
     loadUI();
   }
 
+}
+function loadPC() {
+  let fs = fullscreen();
+  fullscreen(!fs);
 }
