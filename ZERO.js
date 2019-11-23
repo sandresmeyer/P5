@@ -7,7 +7,7 @@ var currentCard=0;
 var indicedeck=0;
 var dirc=0;
 let imagenCarta;
-
+var gameState=0;
 var deck=[
   new Card("imgs/001.jpg","hola soy oprah","No lo creo","si sip",25,0,0,-25,-25,0,0,25),
   new Card("imgs/002.jpg","hola soy retrasada","Mentira","Porisita",1,1,1,1,-1,-1,-1,-1),
@@ -20,6 +20,7 @@ var deck=[
   new Card("imgs/009.jpg","soi jipster","sdscsdcxz","ewewewe",7,1,2,3,-1,-1,-1,-1),
   new Card("imgs/010.jpg","uwu","uwu","uwu",1,1,1,1,-1,-1,-1,-1),
 ]
+
 function preload() {
   // preload() runs once
   ovniIcon=loadImage("imgs/ovniIcon.png");
@@ -36,7 +37,8 @@ function preload() {
     loadImage(deck[6].imgn),
     loadImage(deck[7].imgn),
     loadImage(deck[8].imgn),
-    loadImage(deck[9].imgn)
+    loadImage(deck[9].imgn),
+    loadImage("https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg")
   ]
   //img = loadImage('assets/laDefense.jpg');
 }
@@ -50,7 +52,7 @@ function setup(){
 function draw(){
   cardX=windowWidth/2;
   cardY=windowHeight/2;
-presionado=0;
+
   loadUI();
   noLoop();
 
@@ -60,14 +62,16 @@ function nextCard(){
   if (ovni<=0 ||crew<=0||ships<=0||minerals<=0){
     botonIZ.remove();
     botonDER.remove();
+    gameState=1;
     loadGO();
-  }else{
+  }else if (gameState===0){
     cardX=windowWidth/2;
     cardY=windowHeight/2;
     loadUI();
 
   }
-
+  console.log(indicedeck);
+console.log(deck.length);
 }
 
 function accion_IZ(){
@@ -76,7 +80,7 @@ function accion_IZ(){
   crew=crew+deck[indicedeck].valorCREW_IZ;
   ships=ships+deck[indicedeck].valorSHIPS_IZ;
   minerals=minerals+deck[indicedeck].valorMINERALS_IZ;
-  ++indicedeck;
+  indicedeck++;
   //debugger;
 
   nextCard();
@@ -88,7 +92,7 @@ function accion_DER(){
   ships=ships+deck[indicedeck].valorSHIPS_DER;
   minerals=minerals+deck[indicedeck].valorMINERALS_DER;
 
-  ++indicedeck;
+  indicedeck++;
   //debugger;
 
   nextCard();
@@ -100,11 +104,11 @@ function windowResized() {
 }
 
 function loadUI(){
-presionado=0;
+
   var textoIZ;
   var textoDER;
 
-  if (indicedeck>9){
+  if (indicedeck>deck.length-1){
     indicedeck=0;
   }
 
@@ -179,19 +183,11 @@ presionado=0;
   rectMode(CORNER);
   rect(windowWidth/2-180, windowHeight/2-375,7,50);
 
-
-
-
-
   image(ovniIcon, windowWidth/2-150, windowHeight-windowHeight/1.12,50,50);
-
   //image(crewIcon, windowWidth/2-50, windowHeight/2-350,50,50);
   image(crewIcon, windowWidth/2-50, windowHeight-windowHeight/1.12,50,50);
   image(shipsIcon, windowWidth/2+50, windowHeight-windowHeight/1.12,50,50);
-
   image(mineralsIcon, windowWidth/2+150, windowHeight-windowHeight/1.12,50,50);
-
-
 
 }
 function hoverIZ() {
@@ -227,15 +223,17 @@ function oHDER() {
 }
 
 function loadGO(){
+  gameState=1;
   background("#282C34");
   textSize(40);
   textAlign(CENTER);
   text("GUEIM OBER uwu", windowWidth/2,windowHeight/2);
 }
 function mouseDragged() {
+if (gameState===0){
   cardX=mouseX;
   cardY=mouseY;
-  presionado=1;
+
   if(mouseX>windowWidth/2){
     hoverDER();
     //loadUI();
@@ -245,16 +243,22 @@ function mouseDragged() {
 
     //loadUI();
   }
+}
+
+
+
+
 
 }
 function mouseReleased(){
-  if(presionado=1 && mouseX>windowWidth/2+windowWidth/4){
+
+  if(gameState===0 && mouseX>windowWidth/2+windowWidth/4){
     accion_DER()
 
-  }else if(presionado=1 && mouseX<windowWidth/2-windowWidth/4){
+  }else if(gameState===0 && mouseX<windowWidth/2-windowWidth/4){
     accion_IZ()
 
-  }else {
+  }else if(gameState===0)  {
     cardX=windowWidth/2;
     cardY=windowHeight/2;
     loadUI();
