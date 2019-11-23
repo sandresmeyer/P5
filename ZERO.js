@@ -40,6 +40,7 @@ function preload() {
     loadImage(deck[9].imgn),
 
   ]
+  //debugger;
   //img = loadImage('assets/laDefense.jpg');
 }
 function setup(){
