@@ -38,7 +38,7 @@ function preload() {
     loadImage(deck[7].imgn),
     loadImage(deck[8].imgn),
     loadImage(deck[9].imgn),
-    loadImage("https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg")
+
   ]
   //img = loadImage('assets/laDefense.jpg');
 }
