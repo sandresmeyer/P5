@@ -39,14 +39,16 @@ function preload() {
     loadImage(deck[8].imgn),
     loadImage(deck[9].imgn),
 
-  ]
+  ];
+  NovaMono=loadFont('assets/NovaMono-Regular.ttf');
   //debugger;
   //img = loadImage('assets/laDefense.jpg');
 }
 function setup(){
   createCanvas(windowWidth, windowHeight);
-  botonIZ = createButton('NO');
+botonIZ = createButton('JUGAR');
   botonDER = createButton('SI');
+  button = createImg('assets/max.png');
   //loadUI();
 }
 
@@ -54,7 +56,7 @@ function draw(){
   cardX=windowWidth/2;
   cardY=windowHeight/2;
 
-  loadUI();
+  loadStart();
   noLoop();
 
 }
@@ -101,18 +103,42 @@ function accion_DER(){
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  loadUI();
+}
+
+function loadStart(){
+  gameState=1;
+  background("#282C34");
+
+  textSize(50);
+  fill("#DD4F42");
+  //stroke("#ABB2A0");
+  textFont(NovaMono);
+textAlign(CENTER,TOP);
+text("MACRISIS", windowWidth/2,windowHeight/3);
+  botonIZ.position(windowWidth/2-100,windowHeight-windowHeight/7);
+  botonIZ.mousePressed(loadUI);
+  botonIZ.size(150);
+  botonIZ.style('background-color', "#405D94");
+  botonIZ.style('border-radius', "8px");
+  botonIZ.style('display', "inline-block");
+  botonIZ.style('margin', "25px 25px 25px 25px");
+  botonIZ.style('border', "none");
+  botonIZ.style('font-family',  "NovaMono");
+  botonIZ.style('font-size', "32px");
+
 
 }
 
 function loadUI(){
-
+gameState=0;
   var textoIZ;
   var textoDER;
 
   if (indicedeck>deck.length-1){
     indicedeck=0;
   }
-
+  botonIZ.remove();
   background("#282C34");
   textSize(16);
   textAlign(CENTER,TOP);
@@ -133,36 +159,28 @@ function loadUI(){
 
   //text(textoIZ, windowWidth/2-100,windowHeight/2+160);
   //botonIZ.position(windowWidth/2-100-75,windowHeight/2+250);
-  botonIZ.position(windowWidth/2-100-75,windowHeight-windowHeight/7);
-  botonIZ.mousePressed(accion_IZ);
-  botonIZ.size(150);
-  botonIZ.style('background-color', "#f44336");
-  botonIZ.style('border-radius', "8px");
-  botonIZ.style('display', "inline-block");
-  botonIZ.style('padding', "14px 40px");
-  botonIZ.style('border', "none");
-  botonIZ.style('font-family', "saxMono");
-  botonIZ.style('font-size', "32px");
-  botonIZ.mouseOver(hoverIZ).mouseOut(oHIZ);
 
 
-  botonDER.position(windowWidth/2+100-75,windowHeight-windowHeight/7);
-  botonDER.mousePressed(loadPC);
-  botonDER.size(150);
-  botonDER.style('background-color', "#4CAF50");
-  botonDER.style('border-radius', "8px");
-  botonDER.style('display', "inline-block");
-  botonDER.style('padding', "14px 40px");
-  botonDER.style('border', "none");
-  botonDER.style('font-family', "saxMono");
-  botonDER.style('font-size', "32px");
-  botonDER.mouseOver(hoverDER).mouseOut(oHDER);
 
+  // botonDER.position(windowWidth/2+100-75,windowHeight-windowHeight/7);
+  // botonDER.mousePressed(loadPC);
+  // botonDER.size(150);
+  // botonDER.style('background-color', "#4CAF50");
+  // botonDER.style('border-radius', "8px");
+  // botonDER.style('display', "inline-block");
+  // botonDER.style('padding', "14px 40px");
+  // botonDER.style('border', "none");
+  // botonDER.style('font-family', "NovaMono");
+  // botonDER.style('font-size', "32px");
+  // botonDER.mouseOver(hoverDER).mouseOut(oHDER);
+
+    button.position(windowWidth/2,windowHeight-windowHeight/7,500,500);
+    button.mousePressed(loadPC);
 
   textSize(32);
   fill("#98C379");
   //stroke("#ABB2A0");
-  textFont('saxMono');
+  textFont(NovaMono);
 
   if (ovni<25){
     ellipseMode(CENTER);
@@ -181,8 +199,8 @@ function loadUI(){
   //text(deck[indicedeck].texto,(windowWidth/2), (windowHeight/2)-225);
   text(deck[indicedeck].texto,(windowWidth/2),windowHeight-windowHeight/1.3);
 
-  rectMode(CORNER);
-  rect(windowWidth/2-180, windowHeight/2-375,7,50);
+  // rectMode(CORNER);
+  // rect(windowWidth/2-180, windowHeight/2-375,7,50);
 
   image(ovniIcon, windowWidth/2-150, windowHeight-windowHeight/1.12,50,50);
   //image(crewIcon, windowWidth/2-50, windowHeight/2-350,50,50);
