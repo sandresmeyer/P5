@@ -211,10 +211,10 @@ text(cardToDisplay.personaje, (windowWidth/2), windowHeight-windowHeight/4);
   text(cardToDisplay.texto,(windowWidth/2),windowHeight-windowHeight/1.3);
   // rectMode(CORNER);
   // rect(windowWidth/2-180, windowHeight/2-375,7,50);
-  image(ovniIcon, windowWidth/2-150, windowHeight/25,windowHeight/20,windowHeight/20);
-  image(crewIcon, windowWidth/2-50, windowHeight/25,windowHeight/20,windowHeight/20);
-  image(shipsIcon, windowWidth/2+50, windowHeight/25,windowHeight/20,windowHeight/20);
-  image(mineralsIcon, windowWidth/2+150, windowHeight/25,windowHeight/20,windowHeight/20);
+  image(ovniIcon, windowWidth/2-windowWidth/6, windowHeight/25,windowHeight/15,windowHeight/15);
+  image(crewIcon, windowWidth/2-windowWidth/8+(windowWidth/8)/2, windowHeight/25,windowHeight/15,windowHeight/15);
+  image(shipsIcon, windowWidth/2+windowWidth/8-(windowWidth/8)/2, windowHeight/25,windowHeight/15,windowHeight/15);
+  image(mineralsIcon, windowWidth/2+windowWidth/6, windowHeight/25,windowHeight/15,windowHeight/15);
 
 }
 
