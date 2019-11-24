@@ -3,42 +3,23 @@ var crew=50;
 var ships=50;
 var minerals=50;
 var val;
-var i=0;
+var currentCard=0;
 var indicedeck=0;
 var dirc=0;
 let imagenCarta;
 var gameState=0;
-var cardToDisplay;
-var personajes=[
-  new Personaje("oprah","imgs/001.jpg"),
-  new Personaje("retrasada","imgs/002.jpg"),
-  new Personaje("anseano","imgs/003.jpg"),
-  new Personaje("clinton","imgs/004.jpg"),
-  new Personaje("not oprah","imgs/005.jpg"),
-  new Personaje("charly","imgs/006.jpg"),
-  new Personaje("nn","imgs/007.jpg"),
-  new Personaje("jipster","imgs/008.jpg"),
-  new Personaje("not jipster","imgs/009.jpg"),
-  new Personaje("uwu","imgs/010.jpg")
-]
-var deckEspecial=[
-  new Card(personajes[4].nombre,"muchas gracias","No lo creo","si sip",25,0,0,-25,-25,0,0,25),
-  new Card(personajes[4].nombre,"me parece una falta de respeto","Mentira","Porisita",1,1,1,1,-1,-1,-1,-1),
-
-]
 var deck=[
-  new Card(personajes[0].nombre,"hola soy oprah","No lo creo","si sip",25,0,0,-25,-25,0,0,25),
-  new Card(personajes[1].nombre,"hola soy retrasada","Mentira","Porisita",1,1,1,1,-1,-1,-1,-1),
-  new Card(personajes[2].nombre,"hola tengo canser","No lo creo",":(",7,1,2,3,-1,-1,-1,-1),
-  new Card(personajes[3].nombre,"i did not had sex with that woman","mmmm","ok",1,1,1,1,-1,-1,-1,-1),
-  new Card(personajes[4].nombre,"hola soy oprah","No lo creo","si sip",7,1,2,3,-1,-1,-1,-1,deckEspecial[0],deckEspecial[1]),
-  new Card(personajes[5].nombre,"yo soy de la cruz del sur","No lo creo","ok?",1,1,1,1,-1,-1,-1,-1),
-  new Card(personajes[6].nombre,"dsdsdsdsds","ok","ok",7,1,2,3,-1,-1,-1,-1),
-  new Card(personajes[7].nombre,"no soi jipster","dsdsfdsf","dsdsdsds",1,1,1,1,-1,-1,-1,-1),
-  new Card(personajes[8].nombre,"soi jipster","sdscsdcxz","ewewewe",7,1,2,3,-1,-1,-1,-1),
-  new Card(personajes[9].nombre,"uwu","uwu","uwu",1,1,1,1,-1,-1,-1,-1),
+  new Card("imgs/001.jpg","hola soy oprah","No lo creo","si sip",25,0,0,-25,-25,0,0,25),
+  new Card("imgs/002.jpg","hola soy retrasada","Mentira","Porisita",1,1,1,1,-1,-1,-1,-1),
+  new Card("imgs/003.jpg","hola tengo canser","No lo creo",":(",7,1,2,3,-1,-1,-1,-1),
+  new Card("imgs/004.jpg","i did not had sex with that woman","mmmm","ok",1,1,1,1,-1,-1,-1,-1),
+  new Card("imgs/005.jpg","hola soy oprah","No lo creo","si sip",7,1,2,3,-1,-1,-1,-1),
+  new Card("imgs/006.jpg","yo soy de la cruz del sur","No lo creo","ok?",1,1,1,1,-1,-1,-1,-1),
+  new Card("imgs/007.jpg","dsdsdsdsds","ok","ok",7,1,2,3,-1,-1,-1,-1),
+  new Card("imgs/008.jpg","no soi jipster","dsdsfdsf","dsdsdsds",1,1,1,1,-1,-1,-1,-1),
+  new Card("imgs/009.jpg","soi jipster","sdscsdcxz","ewewewe",7,1,2,3,-1,-1,-1,-1),
+  new Card("imgs/010.jpg","uwu","uwu","uwu",1,1,1,1,-1,-1,-1,-1),
 ]
-
 
 function preload() {
   // preload() runs once
@@ -47,16 +28,16 @@ function preload() {
   shipsIcon=loadImage("imgs/shipsIcon.png");
   mineralsIcon=loadImage("imgs/mineralsIcon.png");
   deckImages=[
-    loadImage(personajes[0].imagen),
-    loadImage(personajes[1].imagen),
-    loadImage(personajes[2].imagen),
-    loadImage(personajes[3].imagen),
-    loadImage(personajes[4].imagen),
-    loadImage(personajes[5].imagen),
-    loadImage(personajes[6].imagen),
-    loadImage(personajes[7].imagen),
-    loadImage(personajes[8].imagen),
-    loadImage(personajes[9].imagen)
+    loadImage(deck[0].imgn),
+    loadImage(deck[1].imgn),
+    loadImage(deck[2].imgn),
+    loadImage(deck[3].imgn),
+    loadImage(deck[4].imgn),
+    loadImage(deck[5].imgn),
+    loadImage(deck[6].imgn),
+    loadImage(deck[7].imgn),
+    loadImage(deck[8].imgn),
+    loadImage(deck[9].imgn)
   ];
   NovaMono=loadFont('assets/NovaMono-Regular.ttf');
 }
@@ -76,13 +57,12 @@ gameState=3;
 }
 
 function draw(){
-  noLoop();
-    //console.log("draw");
+    console.log("draw");
   cardX=windowWidth/2;
   cardY=windowHeight/2;
 
   windowResized();
-
+  noLoop();
 }
 
 function nextCard(){
@@ -98,23 +78,48 @@ function nextCard(){
   }
 }
 
-// function cardHandler(cardToDisplay){
-//
-//   return cardToDisplay;
-// }
+function accion_IZ(){
+  ovni=ovni+deck[indicedeck].valorOVNI_IZ;
+  crew=crew+deck[indicedeck].valorCREW_IZ;
+  ships=ships+deck[indicedeck].valorSHIPS_IZ;
+  minerals=minerals+deck[indicedeck].valorMINERALS_IZ;
+  indicedeck++;
+  //debugger;
 
+  nextCard();
+}
 
+function accion_DER(){
+  ovni=ovni+deck[indicedeck].valorOVNI_DER;
+  crew=crew+deck[indicedeck].valorCREW_DER;
+  ships=ships+deck[indicedeck].valorSHIPS_DER;
+  minerals=minerals+deck[indicedeck].valorMINERALS_DER;
+
+  indicedeck++;
+  nextCard();
+}
+
+function windowResized() {
+  if(gameState===0){
+    resizeCanvas(windowWidth, windowHeight);
+    loadUI();
+  }else if(gameState===1){
+    resizeCanvas(windowWidth, windowHeight);
+    loadGO();
+  }else if(gameState===3){
+    resizeCanvas(windowWidth, windowHeight);
+    loadStart();
+  }
+}
 
 function loadStart(){
-  //console.log("im here start");
-
+  console.log("im here start");
   gameState=3;
   background("#FFFFFF");
   botonJugar.mousePressed(loadUI);
   botonJugar.show();
   botonJugar.position(cardX,windowHeight-windowHeight/4);
   botonJugar.center('horizontal');
-  cardToDisplay=deck[indicedeck];
   // textSize(50);
   // fill("#DD4F42");
   // //stroke("#ABB2A0");
@@ -131,23 +136,16 @@ function loadStart(){
   // botonIZ.style('border', "none");
   // botonIZ.style('font-family',  "NovaMono");
   // botonIZ.style('font-size', "32px");
-
-
-
-
-
 }
 
 function loadUI(){
-
-  //console.log("im here ui");
+  console.log("im here ui");
   gameState=0;
   var textoIZ;
   var textoDER;
 
   if (indicedeck>deck.length-1){
     indicedeck=0;
-    cardToDisplay=deck[indicedeck];
   }
 botonPantC.size(windowWidth/12,windowHeight/12);
   botonPantC.show();
@@ -187,81 +185,37 @@ botonPantC.size(windowWidth/12,windowHeight/12);
   fill("#98C379");
   //stroke("#ABB2A0");
   textFont(NovaMono);
-  console.log(indicedeck);
-text(cardToDisplay.personaje, (windowWidth/2), windowHeight-windowHeight/4);
 
-  textSize(32);
+  if (ovni<25){
+    ellipseMode(CENTER);
+    fill("#7B2C34"); // Set fill to gray
+    ellipse(windowWidth/2-150, windowHeight/2-300+13, 50, 50); // Draw gray ellipse using CENTER mode
+  }
   fill("#98C379");
-  //stroke("#ABB2A0");
-  textFont(NovaMono);
-
-    fillColorHandler(ovni);
   text(ovni.toString(), (windowWidth/2)-150, windowHeight-windowHeight/1.2);
-  fillColorHandler(crew);
   text(crew.toString(), (windowWidth/2)-50, windowHeight-windowHeight/1.2);
   //text(crew.toString(), (windowWidth/2)-50, (windowHeight/2)-300);
-  fillColorHandler(ships);
   text(ships.toString(), (windowWidth/2)+50, windowHeight-windowHeight/1.2);
-  fillColorHandler(minerals);
   text(minerals.toString(), (windowWidth/2)+150, windowHeight-windowHeight/1.2);
 
   textSize(25);
   fill("#E06C60");
   //text(deck[indicedeck].texto,(windowWidth/2), (windowHeight/2)-225);
-  text(cardToDisplay.texto,(windowWidth/2),windowHeight-windowHeight/1.3);
+  text(deck[indicedeck].texto,(windowWidth/2),windowHeight-windowHeight/1.3);
   // rectMode(CORNER);
   // rect(windowWidth/2-180, windowHeight/2-375,7,50);
-  image(ovniIcon, windowWidth/2-150, windowHeight/25,windowHeight/20,windowHeight/20);
-  image(crewIcon, windowWidth/2-50, windowHeight/25,windowHeight/20,windowHeight/20);
-  image(shipsIcon, windowWidth/2+50, windowHeight/25,windowHeight/20,windowHeight/20);
-  image(mineralsIcon, windowWidth/2+150, windowHeight/25,windowHeight/20,windowHeight/20);
+  image(ovniIcon, windowWidth/2-150, windowHeight-windowHeight/1.12,50,50);
+  image(crewIcon, windowWidth/2-50, windowHeight-windowHeight/1.12,50,50);
+  image(shipsIcon, windowWidth/2+50, windowHeight-windowHeight/1.12,50,50);
+  image(mineralsIcon, windowWidth/2+150, windowHeight-windowHeight/1.12,50,50);
 
 }
-
-function accion_IZ(){
-  if (cardToDisplay.optIZ != null){
-      cardToDisplay=deck[indicedeck].optIZ;
-nextCard();
-  }else{
-    ovni=ovni+deck[indicedeck].valorOVNI_IZ;
-    crew=crew+deck[indicedeck].valorCREW_IZ;
-    ships=ships+deck[indicedeck].valorSHIPS_IZ;
-    minerals=minerals+deck[indicedeck].valorMINERALS_IZ;
-    indicedeck++;
-    //debugger;
-cardToDisplay=deck[indicedeck];
-    nextCard();
-
-  }
-
-}
-
-function accion_DER(){
-  if (cardToDisplay.optDer != null){
-      cardToDisplay=deck[indicedeck].optDer;
-nextCard();
-  }else{
-    ovni=ovni+deck[indicedeck].valorOVNI_DER;
-    crew=crew+deck[indicedeck].valorCREW_DER;
-    ships=ships+deck[indicedeck].valorSHIPS_DER;
-    minerals=minerals+deck[indicedeck].valorMINERALS_DER;
-
-    indicedeck++;
-    cardToDisplay=deck[indicedeck];
-    nextCard();
-
-  }
-
-}
-
-
-
 function hoverIZ() {
   loadUI();
   textAlign(CENTER);
   fill("#BC78DD");
   textSize(20);
-  textoIZ=text(cardToDisplay.textoIZ, windowWidth/2-100,windowHeight/2+200);
+  textoIZ=text(deck[indicedeck].textoIZ, windowWidth/2-100,windowHeight/2+200);
   //text(deck[indicedeck].textoIZ, windowWidth/2-100,windowHeight/2+160);
 }
 
@@ -277,7 +231,7 @@ function hoverDER() {
   textAlign(CENTER);
   fill("#BC78DD");
   textSize(20);
-  textoDER=text(cardToDisplay.textoDER, windowWidth/2+100,windowHeight/2+200);
+  textoDER=text(deck[indicedeck].textoDER, windowWidth/2+100,windowHeight/2+200);
 }
 
 function oHDER() {
@@ -289,7 +243,7 @@ function oHDER() {
 }
 
 function loadGO(){
-    //console.log("im here go");
+    console.log("im here go");
   gameState=1;
   //botonJugar.remove();
   background("#282C34");
@@ -333,41 +287,5 @@ function loadPC() {
 
   let fs = fullscreen();
   fullscreen(!fs);
-  //console.log(gameState);
-}
-function windowResized() {
-  if(gameState===0){
-    resizeCanvas(windowWidth, windowHeight);
-    loadUI();
-  }else if(gameState===1){
-    resizeCanvas(windowWidth, windowHeight);
-    loadGO();
-  }else if(gameState===3){
-    resizeCanvas(windowWidth, windowHeight);
-    loadStart();
-  }
-}
-function fillColorHandler(variable){
-  if (variable<=10){
-    fill("#E32221");
-  }else if(variable<=20){
-    fill("#E7521F");
-  }else if(variable<=30){
-    fill("#EB831D");
-  }else if(variable<=40){
-    fill("#EFB31B");
-  }else if(variable<=50){
-    fill("#F3E419");
-  }else if(variable<=60){
-    fill("#F3E419");
-  }else if(variable<=70){
-    fill("#B6CE29");
-  }else if(variable<=80){
-    fill("#79B93A");
-  }else if(variable<=90){
-    fill("#3CA34A");
-  }else if(variable<=100){
-    fill("#008E5B");
-  }
-
+  console.log(gameState);
 }
