@@ -400,7 +400,7 @@ function loadGO(){
   botonJugar.mousePressed(loadUI);
   botonJugar.show();
 
-  botonJugar.size(windowHeight/2,(windowHeight/2)/4);
+  botonJugar.size(100,100);
   botonJugar.position(windowWidth/2-botonJugar.width/2,windowHeight-windowHeight/4);
   botonInfo.size(0,0);
   botonInfo.hide();
