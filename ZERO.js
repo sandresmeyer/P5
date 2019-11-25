@@ -1,51 +1,94 @@
-var ovni = 50;
-var crew=50;
-var ships=50;
-var minerals=50;
-var val;
-var i=0;
+var med = 50;
+var pob= 50;
+var seg= 50;
+var econ= 50;
 var indicedeck=0;
-var dirc=0;
 let imagenCarta;
 var gameState=0;
 var cardToDisplay;
 var personajes=[
-  new Personaje("oprah","imgs/001.jpg"),
-  new Personaje("retrasada","imgs/002.jpg"),
-  new Personaje("anseano","imgs/003.jpg"),
-  new Personaje("clinton","imgs/004.jpg"),
-  new Personaje("not oprah","imgs/005.jpg"),
-  new Personaje("charly","imgs/006.jpg"),
-  new Personaje("nn","imgs/007.jpg"),
-  new Personaje("jipster","imgs/008.jpg"),
-  new Personaje("not jipster","imgs/009.jpg"),
-  new Personaje("uwu","imgs/010.jpg")
+  new Personaje("CRISTINA","imgs/00.jpg"),
+  new Personaje("LA CHIQUI","imgs/01.jpg"),
+  new Personaje("LANATA","imgs/02.jpg"),
+  new Personaje("LA VIDAL","imgs/03.jpg"),
+  new Personaje("ELISA","imgs/04.jpg"),
+  new Personaje("JULIANA AWADA","imgs/05.jpg"),
+  new Personaje("SR BISMAN","imgs/06.jpg"),
+  new Personaje("FEINMANN","imgs/07.jpg"),
+  new Personaje('"GAI"',"imgs/08.jpg"),
+  new Personaje("CHRISTINE","imgs/09.jpg"),
+  new Personaje("BOMBONADIO","imgs/10.jpg"),
+  new Personaje("PICHETTO","imgs/11.jpg"),
+  new Personaje('MARGARITA YOYAGANÉ',"imgs/12.jpg"),
+  new Personaje("DE BRITO","imgs/13.jpg"),
+  new Personaje("PEÑA","imgs/14.jpg"),
+  new Personaje("MALDITA LISIADA","imgs/15.jpg"),
+  new Personaje("PAPI","imgs/16.jpg"),
+  new Personaje("PATO PATO PATO PATO","imgs/17.jpg"),
+  new Personaje("DA LO MISMO","imgs/18.jpg"),
+  new Personaje("AMALIA","imgs/19.jpg"),
+  new Personaje("TINCHO","imgs/20.jpg"),
+  new Personaje("DURAN DURAN","imgs/21.jpg"),
+  new Personaje("MILI","imgs/22.jpg"),
+  new Personaje("LA SUSI","imgs/23.jpg"),
+  new Personaje("CHETA DE NORDELTA","imgs/24.jpg"),
+  new Personaje("OK BOOMER","imgs/25.jpg"),
+  new Personaje("JUAN PEREZ","imgs/26.jpg"),
+  new Personaje("OTRA CHETA","imgs/27.jpg"),
+
+  //new Personaje("Bombonadio","imgs/30.jpg"),
 ]
 var deckEspecial=[
-  new Card(personajes[4].nombre,"muchas gracias","No lo creo","si sip",25,0,0,-25,-25,0,0,25),
-  new Card(personajes[4].nombre,"me parece una falta de respeto","Mentira","Porisita",1,1,1,1,-1,-1,-1,-1),
-
+  new Card(personajes[4].nombre,"Si, yo otra vez","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[4].nombre,"Si, yo otra vez","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[14].nombre,"Si, yo otra vez","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[14].nombre,"Si, yo otra vez","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[24].nombre,"Si, yo otra vez","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[24].nombre,"Si, yo otra vez","...","...",0,0,0,0,0,0,0,0),
 ]
 var deck=[
-  new Card(personajes[0].nombre,"hola soy oprah","No lo creo","si sip",25,0,0,-25,-25,0,0,25),
-  new Card(personajes[1].nombre,"hola soy retrasada","Mentira","Porisita",1,1,1,1,-1,-1,-1,-1),
-  new Card(personajes[2].nombre,"hola tengo canser","No lo creo",":(",7,1,2,3,-1,-1,-1,-1),
-  new Card(personajes[3].nombre,"i did not had sex with that woman","mmmm","ok",1,1,1,1,-1,-1,-1,-1),
-  new Card(personajes[4].nombre,"hola soy oprah","No lo creo","si sip",7,1,2,3,-1,-1,-1,-1,deckEspecial[0],deckEspecial[1]),
-  new Card(personajes[5].nombre,"yo soy de la cruz del sur","No lo creo","ok?",1,1,1,1,-1,-1,-1,-1),
-  new Card(personajes[6].nombre,"dsdsdsdsds","ok","ok",7,1,2,3,-1,-1,-1,-1),
-  new Card(personajes[7].nombre,"no soi jipster","dsdsfdsf","dsdsdsds",1,1,1,1,-1,-1,-1,-1),
-  new Card(personajes[8].nombre,"soi jipster","sdscsdcxz","ewewewe",7,1,2,3,-1,-1,-1,-1),
-  new Card(personajes[9].nombre,"uwu","uwu","uwu",1,1,1,1,-1,-1,-1,-1),
+  new Card(personajes[0].nombre,"Armen un partido y ganen las elecciones.","KUKA KAKA","Ganamos!!, lastima feo dia",-49,-25,25,50,50,25,-25,-49),
+  new Card(personajes[1].nombre,"Daría mi vida para que no volviera el kirchnerismo.","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[2].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[3].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[4].nombre,"...","...","...",0,0,0,0,0,0,0,0,deckEspecial[0],deckEspecial[1]),
+  new Card(personajes[5].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[6].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[7].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[8].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[9].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[10].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[11].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[12].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[13].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[14].nombre,"...","...","...",0,0,0,0,0,0,0,0,deckEspecial[0],deckEspecial[1]),
+  new Card(personajes[15].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[16].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[17].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[18].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[19].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[20].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[21].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[22].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[23].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[24].nombre,"...","...","...",0,0,0,0,0,0,0,0,deckEspecial[0],deckEspecial[1]),
+  new Card(personajes[25].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[26].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+  new Card(personajes[27].nombre,"...","...","...",0,0,0,0,0,0,0,0),
+
+
 ]
 
 
 function preload() {
   // preload() runs once
-  ovniIcon=loadImage("imgs/ovniIcon.png");
-  crewIcon=loadImage("imgs/crewIcon.png");
-  shipsIcon=loadImage("imgs/shipsIcon.png");
-  mineralsIcon=loadImage("imgs/mineralsIcon.png");
+  medIcon=loadImage("imgs/medIcon.png");
+  pobIcon=loadImage("imgs/pobIcon.png");
+  segIcon=loadImage("imgs/segIcon.png");
+  econIcon=loadImage("imgs/econIcon.png");
+  fLEFT=loadImage("assets/fLEFT.png");
+  fRIGHT=loadImage("assets/fRIGHT.png");
+  logo=loadImage("assets/logo.png");
   deckImages=[
     loadImage(personajes[0].imagen),
     loadImage(personajes[1].imagen),
@@ -56,9 +99,30 @@ function preload() {
     loadImage(personajes[6].imagen),
     loadImage(personajes[7].imagen),
     loadImage(personajes[8].imagen),
-    loadImage(personajes[9].imagen)
+    loadImage(personajes[9].imagen),
+    loadImage(personajes[10].imagen),
+    loadImage(personajes[11].imagen),
+    loadImage(personajes[12].imagen),
+    loadImage(personajes[13].imagen),
+    loadImage(personajes[14].imagen),
+    loadImage(personajes[15].imagen),
+    loadImage(personajes[16].imagen),
+    loadImage(personajes[17].imagen),
+    loadImage(personajes[18].imagen),
+    loadImage(personajes[19].imagen),
+    loadImage(personajes[20].imagen),
+    loadImage(personajes[21].imagen),
+    loadImage(personajes[22].imagen),
+    loadImage(personajes[23].imagen),
+    loadImage(personajes[24].imagen),
+    loadImage(personajes[25].imagen),
+    loadImage(personajes[26].imagen),
+    loadImage(personajes[27].imagen)
+
+
   ];
-  NovaMono=loadFont('assets/NovaMono-Regular.ttf');
+  SFMono=loadFont('assets/SFMono-Regular.otf');
+  GothamB=loadFont('assets/Gotham-Bold.ttf');
 }
 function setup(){
   createCanvas(windowWidth, windowHeight);
@@ -66,18 +130,21 @@ function setup(){
   //botonIZ = createButton('JUGAR');
   //botonDER = createButton('SI');
   imageMode(CENTER);
-botonPantC = createImg('assets/max.png');
-botonPantC.size(0,0);
-botonPantC.hide();
-botonJugar= createImg('assets/btnjugar.png');
-
-botonJugar.hide();
-gameState=3;
+  botonPantC = createImg('assets/max.png');
+  botonPantC.size(0,0);
+  botonPantC.hide();
+  botonJugar= createImg('assets/btnjugar.png');
+  botonJugar.hide();
+  botonInfo= createImg('assets/btnInfo.png');
+  botonInfo.hide();
+  botonCerrar= createImg('assets/btnCerrar.png');
+  botonCerrar.hide();
+  gameState=3;
 }
 
 function draw(){
   noLoop();
-    //console.log("draw");
+  //console.log("draw");
   cardX=windowWidth/2;
   cardY=windowHeight/2;
 
@@ -86,7 +153,7 @@ function draw(){
 }
 
 function nextCard(){
-  if (ovni<=0 ||crew<=0||ships<=0||minerals<=0){
+  if (med<=0 ||pob<=0||seg<=0||econ<=0){
     // botonIZ.remove();
     // botonDER.remove();
     gameState=1;
@@ -107,39 +174,59 @@ function nextCard(){
 
 function loadStart(){
   //console.log("im here start");
-
   gameState=3;
   background("#FFFFFF");
+  image(logo, windowWidth/2, windowHeight/2.5,300,300);
   botonJugar.mousePressed(loadUI);
   botonJugar.show();
-  botonJugar.position(cardX,windowHeight-windowHeight/4);
-  botonJugar.center('horizontal');
+  // botonJugar.size(windowHeight/4,(windowHeight/4)/4);
+  botonJugar.size(100,100);
+  botonJugar.position(windowWidth/2-botonJugar.width/2,windowHeight-windowHeight/3);
+
+rectMode(CORNER);
+noStroke();
+fill("#F4F3B3");
+rect(0,0,windowWidth/9,windowHeight/60);
+fill("#FBD200");
+rect(windowWidth/9,0,windowWidth/9,windowHeight/60);
+fill("#F7B518");
+rect(windowWidth/9*2,0,windowWidth/9,windowHeight/60);
+fill("#ED2C22");
+rect(windowWidth/9*3,0,windowWidth/9,windowHeight/60);
+fill("#E976B0");
+rect(windowWidth/9*4,0,windowWidth/9,windowHeight/60);
+fill("#EC529F");
+rect(windowWidth/9*5,0,windowWidth/9,windowHeight/60);
+fill("#174596");
+rect(windowWidth/9*6,0,windowWidth/9,windowHeight/60);
+fill("#056895");
+rect(windowWidth/9*7,0,windowWidth/9,windowHeight/60);
+fill("#82D0E6");
+rect(windowWidth/9*8,0,windowWidth/9,windowHeight/60);
+
+fill("#F4F3B3");
+rect(0,windowHeight-windowHeight/60,windowWidth/9,windowHeight/60);
+fill("#FBD200");
+rect(windowWidth/9,windowHeight-windowHeight/60,windowWidth/9,windowHeight/60);
+fill("#F7B518");
+rect(windowWidth/9*2,windowHeight-windowHeight/60,windowWidth/9,windowHeight/60);
+fill("#ED2C22");
+rect(windowWidth/9*3,windowHeight-windowHeight/60,windowWidth/9,windowHeight/60);
+fill("#E976B0");
+rect(windowWidth/9*4,windowHeight-windowHeight/60,windowWidth/9,windowHeight/60);
+fill("#EC529F");
+rect(windowWidth/9*5,windowHeight-windowHeight/60,windowWidth/9,windowHeight/60);
+fill("#174596");
+rect(windowWidth/9*6,windowHeight-windowHeight/60,windowWidth/9,windowHeight/60);
+fill("#056895");
+rect(windowWidth/9*7,windowHeight-windowHeight/60,windowWidth/9,windowHeight/60);
+fill("#82D0E6");
+rect(windowWidth/9*8,windowHeight-windowHeight/60,windowWidth/9,windowHeight/60);
   cardToDisplay=deck[indicedeck];
-  // textSize(50);
-  // fill("#DD4F42");
-  // //stroke("#ABB2A0");
-  // textFont(NovaMono);
-  // textAlign(CENTER,TOP);
-  // text("MACRISIS", windowWidth/2,windowHeight/3);
-  // botonIZ.position(windowWidth/2-100,windowHeight-windowHeight/7);
-  // botonIZ.mousePressed(loadUI);
-  // botonIZ.size(150);
-  // botonIZ.style('background-color', "#405D94");
-  // botonIZ.style('border-radius', "8px");
-  // botonIZ.style('display', "inline-block");
-  // botonIZ.style('margin', "25px 25px 25px 25px");
-  // botonIZ.style('border', "none");
-  // botonIZ.style('font-family',  "NovaMono");
-  // botonIZ.style('font-size', "32px");
-
-
-
-
 
 }
 
 function loadUI(){
-
   //console.log("im here ui");
   gameState=0;
   var textoIZ;
@@ -149,87 +236,89 @@ function loadUI(){
     indicedeck=0;
     cardToDisplay=deck[indicedeck];
   }
-botonPantC.size(windowWidth/12,windowHeight/12);
+
+
   botonPantC.show();
+  botonPantC.size(windowHeight/20,windowHeight/20);
+  botonPantC.position(windowWidth/12-botonPantC.width/2,windowHeight-windowHeight/12);
+  botonPantC.mousePressed(loadPC);
+
+  botonInfo.show();
+  botonInfo.size(windowHeight/20,windowHeight/20);
+  botonInfo.position((windowWidth-windowWidth/12)-botonPantC.width/2,windowHeight-windowHeight/12);
+  botonInfo.mousePressed(loadInfo);
+
   botonJugar.size(0,0);
   botonJugar.hide();
-  background("#282C34");
+  botonCerrar.size(0,0);
+  botonCerrar.hide();
+  background("#FFFFFF");
   textSize(16);
   textAlign(CENTER,TOP);
   rectMode(CENTER);
   fill("#21252B");
   rect(windowWidth/2,windowHeight/2,windowHeight/3,windowHeight/3);
 
-  imageMode(CENTER);
-  image(deckImages[indicedeck], cardX,cardY,windowHeight/2.5,windowHeight/2.5);
-  //loadImage(deck[indicedeck].imgn, imagenCarta => {
-  // image(imagenCarta, windowWidth/2,windowHeight/2,windowHeight/3,windowHeight/3);
-  //});
-  //image(deck[indicedeck].imgn, windowWidth/2,windowHeight/2,windowHeight/3,windowHeight/3);
-  //text(textoIZ, windowWidth/2-100,windowHeight/2+160);
-  //botonIZ.position(windowWidth/2-100-75,windowHeight/2+250);
-  // botonDER.position(windowWidth/2+100-75,windowHeight-windowHeight/7);
-  // botonDER.mousePressed(loadPC);
-  // botonDER.size(150);
-  // botonDER.style('background-color', "#4CAF50");
-  // botonDER.style('border-radius', "8px");
-  // botonDER.style('display', "inline-block");
-  // botonDER.style('padding', "14px 40px");
-  // botonDER.style('border', "none");
-  // botonDER.style('font-family', "NovaMono");
-  // botonDER.style('font-size', "32px");
-  // botonDER.mouseOver(hoverDER).mouseOut(oHDER);
 
-  botonPantC.position(windowWidth/2,windowHeight-windowHeight/7,500,500);
-  botonPantC.mousePressed(loadPC);
 
-  textSize(32);
-  fill("#98C379");
+
+
+  textSize(27);
+  fill("#000000");
   //stroke("#ABB2A0");
-  textFont(NovaMono);
+  textFont(GothamB);
   console.log(indicedeck);
-text(cardToDisplay.personaje, (windowWidth/2), windowHeight-windowHeight/4);
-
-  textSize(32);
-  fill("#98C379");
-  //stroke("#ABB2A0");
-  textFont(NovaMono);
-
-    fillColorHandler(ovni);
-  text(ovni.toString(), (windowWidth/2)-150, windowHeight-windowHeight/1.2);
-  fillColorHandler(crew);
-  text(crew.toString(), (windowWidth/2)-50, windowHeight-windowHeight/1.2);
-  //text(crew.toString(), (windowWidth/2)-50, (windowHeight/2)-300);
-  fillColorHandler(ships);
-  text(ships.toString(), (windowWidth/2)+50, windowHeight-windowHeight/1.2);
-  fillColorHandler(minerals);
-  text(minerals.toString(), (windowWidth/2)+150, windowHeight-windowHeight/1.2);
+  text(cardToDisplay.personaje, windowWidth/2,windowHeight-windowHeight/5,windowWidth-20, windowHeight/6);
 
   textSize(25);
-  fill("#E06C60");
+
+  //stroke("#ABB2A0");
+  textFont(GothamB);
+
+  fillColorHandler(med);
+  text(med.toString(), windowWidth/2-150, windowHeight/25+35);
+  fillColorHandler(pob);
+  text(pob.toString(), windowWidth/2-50, windowHeight/25+35);
+  //text(pob.toString(), (windowWidth/2)-50, (windowHeight/2)-300);
+  fillColorHandler(seg);
+  text(seg.toString(), windowWidth/2+50, windowHeight/25+35);
+  fillColorHandler(econ);
+  text(econ.toString(), windowWidth/2+150, windowHeight/25+35);
+
+  textSize(20);
+  fill("#000000");
+  rectMode(CENTER);
+  textAlign(CENTER);
   //text(deck[indicedeck].texto,(windowWidth/2), (windowHeight/2)-225);
-  text(cardToDisplay.texto,(windowWidth/2),windowHeight-windowHeight/1.3);
+  textFont(SFMono);
+  text(cardToDisplay.texto,windowWidth/2,windowHeight/3.8,windowWidth-20, windowHeight/6);
   // rectMode(CORNER);
   // rect(windowWidth/2-180, windowHeight/2-375,7,50);
-  image(ovniIcon, windowWidth/2-150, windowHeight/25,windowHeight/15,windowHeight/15);
-  image(crewIcon, windowWidth/2-50, windowHeight/25,windowHeight/15,windowHeight/15);
-  image(shipsIcon, windowWidth/2+50, windowHeight/25,windowHeight/15,windowHeight/15);
-  image(mineralsIcon, windowWidth/2+150, windowHeight/25,windowHeight/15,windowHeight/15);
+  image(medIcon, windowWidth/2-150, windowHeight/25,windowHeight/15,windowHeight/15);
+  image(pobIcon, windowWidth/2-50, windowHeight/25,windowHeight/15,windowHeight/15);
+  image(segIcon, windowWidth/2+50, windowHeight/25,windowHeight/15,windowHeight/15);
+  image(econIcon, windowWidth/2+150, windowHeight/25,windowHeight/15,windowHeight/15);
+
+  image(fLEFT, windowWidth/12, windowHeight/2,windowHeight/15,windowHeight/15);
+  image(fRIGHT, windowWidth-windowWidth/12, windowHeight/2,windowHeight/15,windowHeight/15);
+
+  imageMode(CENTER);
+  image(deckImages[indicedeck], cardX,cardY,windowHeight/2.5,windowHeight/2.5);
 
 }
 
 function accion_IZ(){
   if (cardToDisplay.optIZ != null){
-      cardToDisplay=deck[indicedeck].optIZ;
-nextCard();
+    cardToDisplay=deck[indicedeck].optIZ;
+    nextCard();
   }else{
-    ovni=ovni+deck[indicedeck].valorOVNI_IZ;
-    crew=crew+deck[indicedeck].valorCREW_IZ;
-    ships=ships+deck[indicedeck].valorSHIPS_IZ;
-    minerals=minerals+deck[indicedeck].valorMINERALS_IZ;
+    med=med+deck[indicedeck].valorMED_IZ;
+    pob=pob+deck[indicedeck].valorPOB_IZ;
+    seg=seg+deck[indicedeck].valorSEG_IZ;
+    econ=econ+deck[indicedeck].valorECON_IZ;
     indicedeck++;
     //debugger;
-cardToDisplay=deck[indicedeck];
+    cardToDisplay=deck[indicedeck];
     nextCard();
 
   }
@@ -238,13 +327,13 @@ cardToDisplay=deck[indicedeck];
 
 function accion_DER(){
   if (cardToDisplay.optDer != null){
-      cardToDisplay=deck[indicedeck].optDer;
-nextCard();
+    cardToDisplay=deck[indicedeck].optDer;
+    nextCard();
   }else{
-    ovni=ovni+deck[indicedeck].valorOVNI_DER;
-    crew=crew+deck[indicedeck].valorCREW_DER;
-    ships=ships+deck[indicedeck].valorSHIPS_DER;
-    minerals=minerals+deck[indicedeck].valorMINERALS_DER;
+    med=med+deck[indicedeck].valorMED_DER;
+    pob=pob+deck[indicedeck].valorPOB_DER;
+    seg=seg+deck[indicedeck].valorSEG_DER;
+    econ=econ+deck[indicedeck].valorECON_DER;
 
     indicedeck++;
     cardToDisplay=deck[indicedeck];
@@ -258,47 +347,68 @@ nextCard();
 
 function hoverIZ() {
   loadUI();
-  textAlign(CENTER);
-  fill("#BC78DD");
+  textAlign(CENTER,TOP);
+  rectMode(CORNER);
+  fill("#000000");
+  textFont(GothamB);
   textSize(20);
-  textoIZ=text(cardToDisplay.textoIZ, windowWidth/2-100,windowHeight/2+200);
+  textoIZ=text(cardToDisplay.textoIZ, windowWidth/2,windowHeight-windowHeight/6);
   //text(deck[indicedeck].textoIZ, windowWidth/2-100,windowHeight/2+160);
 }
 
 function oHIZ() {
   loadUI();
   textAlign(CENTER);
-  fill("#BC78DD");
+  fill("#000000");
+  textFont(GothamB);
   textSize(20);
-  textoIZ=text(" ", windowWidth/2-100,windowHeight/2+200);
+  textoIZ=text(" ", windowWidth/2-100,windowHeight-windowHeight/10);
 }
 function hoverDER() {
   loadUI();
   textAlign(CENTER);
-  fill("#BC78DD");
+  fill("#000000");
+  textFont(GothamB);
   textSize(20);
-  textoDER=text(cardToDisplay.textoDER, windowWidth/2+100,windowHeight/2+200);
+  textoDER=text(cardToDisplay.textoDER, windowWidth/2,windowHeight-windowHeight/6);
 }
 
 function oHDER() {
   loadUI();
   textAlign(CENTER);
-  fill("#BC78DD");
+  fill("#000000");
+  textFont(GothamB);
   textSize(20);
-  textoIZ=text(" ", windowWidth/2+100,windowHeight/2+200);
+  textoIZ=text(" ", windowWidth/2+100,windowHeight-windowHeight/10);
 }
 
 function loadGO(){
-    //console.log("im here go");
+  //console.log("im here go");
   gameState=1;
   //botonJugar.remove();
-  background("#282C34");
+  background("#FFFFFF");
   textSize(40);
-  textAlign(CENTER);
-  text("GUEIM OBER uwu", windowWidth/2,windowHeight/2);
+  textFont(GothamB);
+  textAlign(CENTER,CENTER);
+  rectMode(CENTER);
+  text("GUEIM OBER uwu", windowWidth/2,windowHeight/2,windowWidth-windowWidth/12,windowHeight-windowHeight/12);
+  med = 50;
+  pob= 50;
+  seg= 50;
+  econ= 50;
+  indicedeck=0;
+  botonJugar.mousePressed(loadUI);
+  botonJugar.show();
+
+  botonJugar.size(windowHeight/2,(windowHeight/2)/4);
+  botonJugar.position(windowWidth/2-botonJugar.width/2,windowHeight-windowHeight/4);
+  botonInfo.size(0,0);
+  botonInfo.hide();
+  botonPantC.size(0,0);
+  botonPantC.hide();
 }
 function mouseDragged() {
-  if (gameState===0 && mouseY>windowHeight/2-windowHeight/4 && mouseY<windowHeight/2+windowHeight/4){
+  if (gameState===0 && mouseY>windowHeight/2-windowHeight/8 && mouseY<windowHeight/2+windowHeight/8){
     cardX=mouseX;
     cardY=mouseY;
 
@@ -316,10 +426,10 @@ function mouseDragged() {
 
 function mouseReleased(){
 
-  if(gameState===0 && mouseX>windowWidth/2+windowWidth/4){
+  if(gameState===0 && mouseX>windowWidth/2+windowWidth/4&& mouseY>windowHeight/2-windowHeight/8 && mouseY<windowHeight/2+windowHeight/8){
     accion_DER()
 
-  }else if(gameState===0 && mouseX<windowWidth/2-windowWidth/4){
+  }else if(gameState===0 && mouseX<windowWidth/2-windowWidth/4&& mouseY>windowHeight/2-windowHeight/8 && mouseY<windowHeight/2+windowHeight/8){
     accion_IZ()
 
   }else if(gameState===0)  {
@@ -330,11 +440,32 @@ function mouseReleased(){
 
 }
 function loadPC() {
-
   let fs = fullscreen();
   fullscreen(!fs);
   //console.log(gameState);
 }
+
+function loadInfo(){
+  //console.log("im here go");
+  gameState=4;
+  //botonJugar.remove();
+  background("#FFFFFF");
+  textSize(40);
+  textFont(GothamB);
+  textAlign(CENTER,CENTER);
+  rectMode(CENTER);
+  text("S.A.M.", windowWidth/2,windowHeight/2,windowWidth-windowWidth/12,windowHeight-windowHeight/12);
+  botonCerrar.show();
+  botonCerrar.size(windowHeight/20,windowHeight/20);
+  botonCerrar.position(windowWidth/2-botonPantC.width/2,windowHeight-windowHeight/12);
+  botonCerrar.mousePressed(loadUI);
+  botonPantC.size(0,0);
+  botonPantC.hide();
+  botonInfo.size(0,0);
+  botonInfo.hide();
+}
+
+
 function windowResized() {
   if(gameState===0){
     resizeCanvas(windowWidth, windowHeight);
